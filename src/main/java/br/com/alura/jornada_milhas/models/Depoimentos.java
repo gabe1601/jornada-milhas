@@ -26,5 +26,4 @@ public class Depoimentos {
         this.foto=dados.foto();
         this.nome=dados.nome();
     }
-
 }
