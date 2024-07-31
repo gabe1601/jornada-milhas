@@ -1,6 +1,8 @@
 package br.com.alura.jornada_milhas.models;
 
+import br.com.alura.jornada_milhas.dto.AtualizaDepoimentoDTO;
 import br.com.alura.jornada_milhas.dto.CadastroDTO;
+import br.com.alura.jornada_milhas.dto.DetalhesDepoimentoDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -25,5 +27,17 @@ public class Depoimentos {
         this.comentario=dados.comentario();
         this.foto=dados.foto();
         this.nome=dados.nome();
+    }
+
+    public void atualizarDados(AtualizaDepoimentoDTO dados) {
+        if(dados.comentario() != null){
+            this.comentario=dados.comentario();
+        }
+        if(dados.nome() != null){
+            this.nome=dados.nome();
+        }
+        if(dados.foto() != null){
+            this.foto=dados.foto();
+        }
     }
 }

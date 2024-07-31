@@ -1,5 +1,6 @@
 package br.com.alura.jornada_milhas.controllers;
 
+import br.com.alura.jornada_milhas.dto.AtualizaDepoimentoDTO;
 import br.com.alura.jornada_milhas.dto.CadastroDTO;
 import br.com.alura.jornada_milhas.dto.DetalhesDepoimentoDTO;
 import br.com.alura.jornada_milhas.models.Depoimentos;
@@ -39,6 +40,15 @@ public class DepoimentoController {
         var depoimentosPage = repository.findAll(pageable).map(DetalhesDepoimentoDTO::new);
 
         return ResponseEntity.ok(depoimentosPage);
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity atualizarDepoimentos(@RequestBody @Valid AtualizaDepoimentoDTO dados){
+        var encontrarDepoimento = repository.getReferenceById(dados.id());
+        encontrarDepoimento.atualizarDados(dados);
+
+        return ResponseEntity.ok(new DetalhesDepoimentoDTO(encontrarDepoimento));
     }
 
 }
