@@ -1,6 +1,9 @@
 package br.com.alura.jornada_milhas.models;
 
+import br.com.alura.jornada_milhas.dto.AtualizaDestinoDTO;
+import br.com.alura.jornada_milhas.dto.CadastroDestinoDTO;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,4 +24,21 @@ public class Destinos {
     private String nome;
     private Double preco;
 
+    public Destinos (CadastroDestinoDTO dados){
+        this.foto = dados.foto();
+        this.nome = dados.nome();
+        this.preco = dados.preco();
+    }
+
+    public void atualizarInformacoes(@Valid AtualizaDestinoDTO dados) {
+        if(dados.foto() != null){
+            this.foto = dados.foto();
+        }
+        if(dados.preco() != null){
+            this.preco = dados.preco();
+        }
+        if(dados.nome() != null){
+            this.nome = dados.nome();
+        }
+    }
 }
